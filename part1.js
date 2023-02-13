@@ -28,24 +28,13 @@ const depthFirstValues = (root) => {
         return [];
     }
     else {
-        const stack = [root];
-        const result = [];
-        while (stack.length > 0){
-            const current = stack.pop();
-            result.push(current.val);
-            //console.log(current.val);
-
-            if (current.left) {
-                stack.push(stack.left);
-            }
-            if (current.right) {
-                stack.push(stack.right);
-            }
-        }
+        const rightValues = depthFirstValues(root.right);
+        const leftValues = depthFirstValues(root.left);
+        return [root.val, ...leftValues, ...rightValues];
     }
 
 }
-depthFirstValues(a);
+console.log(depthFirstValues(a));
 
 
 
