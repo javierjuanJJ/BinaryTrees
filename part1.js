@@ -22,13 +22,17 @@ b.right = d;
 b.left = e;
 c.right = f;
 
-const breadthFirstValues = (root) => {
+const treeIncludes = (root, target) => {
 
     const values = [];
     const queue = [ root ];
 
     while (queue.length > 0){
         const current = queue.shift();
+        if (current.value === target){
+            return true;
+        }
+
         values.push(current.val);
         if (current.left != null) {
             queue.push(current.left);
@@ -37,9 +41,9 @@ const breadthFirstValues = (root) => {
             queue.push(current.right);
         }
     }
-    return values;
+    return false;
 }
-console.log(breadthFirstValues(a));
+console.log(treeIncludes(a, 'e'));
 
 
 
