@@ -23,25 +23,13 @@ b.left = e;
 c.right = f;
 
 const treeIncludes = (root, target) => {
-
-    const values = [];
-    const queue = [ root ];
-
-    while (queue.length > 0){
-        const current = queue.shift();
-        if (current.value === target){
-            return true;
-        }
-
-        values.push(current.val);
-        if (current.left != null) {
-            queue.push(current.left);
-        }
-        if (current.right != null) {
-            queue.push(current.right);
-        }
+    if (root.val === target){
+        return true;
     }
-    return false;
+    if (root.val == null){
+        return false;
+    }
+    return treeIncludes(root.left, target) || treeIncludes(root.right, target);
 }
 console.log(treeIncludes(a, 'e'));
 
