@@ -22,19 +22,24 @@ b.right = d;
 b.left = e;
 c.right = f;
 
-const depthFirstValues = (root) => {
+const breadthFirstValues = (root) => {
 
-    if (root == null){
-        return [];
-    }
-    else {
-        const rightValues = depthFirstValues(root.right);
-        const leftValues = depthFirstValues(root.left);
-        return [root.val, ...leftValues, ...rightValues];
-    }
+    const values = [];
+    const queue = [ root ];
 
+    while (queue.length > 0){
+        const current = queue.shift();
+        values.push(current.val);
+        if (current.left != null) {
+            queue.push(current.left);
+        }
+        if (current.right != null) {
+            queue.push(current.right);
+        }
+    }
+    return values;
 }
-console.log(depthFirstValues(a));
+console.log(breadthFirstValues(a));
 
 
 
