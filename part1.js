@@ -22,16 +22,13 @@ b.right = d;
 b.left = e;
 c.right = f;
 
-const treeIncludes = (root, target) => {
-    if (root.val === target){
-        return true;
+const treeSum = (root) => {
+    if (root == null){
+        return 0;
     }
-    if (root.val == null){
-        return false;
-    }
-    return treeIncludes(root.left, target) || treeIncludes(root.right, target);
+    return root.val + treeSum(root.left) + treeSum(root.right);
 }
-console.log(treeIncludes(a, 'e'));
+console.log(treeSum(a));
 
 
 
