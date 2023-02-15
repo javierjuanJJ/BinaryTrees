@@ -26,19 +26,21 @@ const treeSum = (root) => {
     if (root == null){
         return 0;
     }
-    let totalSum = 0;
+    let totalSum = root.val;
     const  queue =[ root ];
 
     while (queue.length > 0){
         const current = queue.shift();
-        totalSum += current.val;
+
 
         if (current.left != null){
             queue.push(current.left);
+            totalSum += current.left.val;
         }
 
         if (current.right != null){
             queue.push(current.right);
+            totalSum += current.right.val;
         }
     }
 
