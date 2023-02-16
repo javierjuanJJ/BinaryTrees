@@ -22,14 +22,13 @@ b.left = d;
 b.right = e;
 c.right = f;
 
-const treeMinValue = (root) => {
-    if (root === null) return Infinity;
-    const smallestLeftValue = treeMinValue(root.left);
-    const smallestRightValue = treeMinValue(root.right);
-    return Math.min(root.val, smallestLeftValue, smallestRightValue);
+const maxPathSum = (root) => {
+    if (root === null) return -Infinity;
+    if (root.left === null && root.right === null) return root.val;
+    return root.val + Math.max(maxPathSum(root.left), maxPathSum(root.right));
 };
 
-console.log(treeMinValue(a));
+console.log(maxPathSum(a));
 
 
 
