@@ -9,45 +9,34 @@ class Node {
 }
 
 
-const a = new Node('a');
-const b = new Node('b');
-const c = new Node('c');
-const d = new Node('d');
-const e = new Node('e');
-const f = new Node('f');
+const a = new Node(3);
+const b = new Node(11);
+const c = new Node(4);
+const d = new Node(4);
+const e = new Node(-2);
+const f = new Node(1);
 
 a.left = b;
 a.right = c;
-b.right = d;
-b.left = e;
+b.left = d;
+b.right = e;
 c.right = f;
 
-const treeSum = (root) => {
-    if (root == null){
-        return 0;
+const treeMinValue = (root) => {
+    const stack = [root];
+
+    let smallest = Infinity;
+    while (stack.length) {
+        const current = stack.pop();
+        if (current.val < smallest) smallest = current.val;
+
+        if (current.left !== null) stack.push(current.left);
+        if (current.right !== null) stack.push(current.right);
     }
-    let totalSum = root.val;
-    const  queue =[ root ];
+    return smallest;
+};
 
-    while (queue.length > 0){
-        const current = queue.shift();
-
-
-        if (current.left != null){
-            queue.push(current.left);
-            totalSum += current.left.val;
-        }
-
-        if (current.right != null){
-            queue.push(current.right);
-            totalSum += current.right.val;
-        }
-    }
-
-
-    return totalSum;
-}
-console.log(treeSum(a));
+console.log(treeMinValue(a));
 
 
 
