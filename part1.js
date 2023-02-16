@@ -23,15 +23,15 @@ b.right = e;
 c.right = f;
 
 const treeMinValue = (root) => {
-    const stack = [root];
+    const queue = [root];
 
     let smallest = Infinity;
-    while (stack.length) {
-        const current = stack.pop();
+    while (queue.length) {
+        const current = queue.shift();
         if (current.val < smallest) smallest = current.val;
 
-        if (current.left !== null) stack.push(current.left);
-        if (current.right !== null) stack.push(current.right);
+        if (current.left !== null) queue.push(current.left);
+        if (current.right !== null) queue.push(current.right);
     }
     return smallest;
 };
